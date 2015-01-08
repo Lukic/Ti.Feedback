@@ -67,9 +67,49 @@ Feedback.prototype.CreateDialog = function(_args){
     
     
     var FeedbackButtonHolder = Ti.UI.createView({
-        top:10,
-        height:100,
+        top:20,
+        bottom:10,
+        height:Ti.UI.SIZE,
+        layout:"vertical"
     });
+    
+    var btn_1 = Ti.UI.createButton({
+        title:"Let everyone know on AppStore",
+        top:0,
+        backgroundColor:"#ddd",
+        left:10,
+        right:10,
+        height:45,
+        color:"#333",
+        font:{fontSize:18,fontWeight:"bold"},
+    });
+    
+    var btn_2 = Ti.UI.createButton({
+        title:"Let me know what I can do better",
+        top:5,
+        backgroundColor:"#ddd",
+        left:10,
+        right:10,
+        height:45,
+        color:"#333",
+        font:{fontSize:18,fontWeight:"bold"},
+    });
+    
+    
+    var btn_3 = Ti.UI.createButton({
+        title:"No thanks",
+        top:5,
+        backgroundColor:"#ddd",
+        left:10,
+        right:10,
+        height:45,
+        color:"#333",
+        font:{fontSize:18,fontWeight:"bold"},
+    });
+    
+    FeedbackButtonHolder.add(btn_1);
+    FeedbackButtonHolder.add(btn_2);
+    FeedbackButtonHolder.add(btn_3);
     
     FeedbackWindow.add(FeedbackTopBar);
     FeedbackWindow.add(FeedbackTitle);
@@ -87,20 +127,26 @@ Feedback.prototype.CreateDialog = function(_args){
     
 }, 2500);
 
-_win.addEventListener('click', function(e) {
-    
-    if(e.source === _win) {
-            FeedbackWindow.animate({
-            left:Ti.Platform.displayCaps.platformWidth,
-            opacity:0,
-            duration:250},function(){
-                _win.close();
-                _win = null;
-            });
-        }
-        
-    });
 
+btn_3.addEventListener('click', function(e) {
+    closeFeedbackWindow(e);
+});
+    
+_win.addEventListener('click', function(e) {
+    if(e.source === _win) {
+        closeFeedbackWindow(e);
+    }
+});
+
+function closeFeedbackWindow(e){
+        FeedbackWindow.animate({
+        left:Ti.Platform.displayCaps.platformWidth,
+        opacity:0,
+        duration:250},function(){
+            _win.close();
+            _win = null;
+        });
+    };    
 };
 
 exports.Feedback = Feedback;
