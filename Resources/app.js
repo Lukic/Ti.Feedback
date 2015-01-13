@@ -1,9 +1,9 @@
 (function() {
  
 var win = Ti.UI.createWindow({
-    backgroundColor:"#333"
+    backgroundColor:"#333",
+    modal:true
 }); 
-
 
 
     var TiFeedback = require("/lib/Feedback/Ti.Feedback");

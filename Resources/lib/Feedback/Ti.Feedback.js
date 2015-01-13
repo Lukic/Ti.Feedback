@@ -1,5 +1,7 @@
 function Feedback(){};
 
+Feedback.prototype.PostponedDialog = function(){};
+
 Feedback.prototype.CreateDialog = function(_args){
     if(_args === undefined) _args = {};
     
@@ -39,7 +41,7 @@ Feedback.prototype.CreateDialog = function(_args){
     var FeedbackTopImage = Ti.UI.createImageView({
         width:60,
         height:60,
-        image:"/lib/Feedback/icon_happy.png"
+        image:_args.topBarImage
     });
     
     FeedbackTopImageHolder.add(FeedbackTopImage);
@@ -49,7 +51,7 @@ Feedback.prototype.CreateDialog = function(_args){
         top:15,
         left:10,
         right:10,
-        text:"Do you like Sunshine?",
+        text:_args.title,
         color:"#333",
         font:{fontSize:18,fontWeight:"bold"},
         textAlign:Ti.UI.TEXT_ALIGNMENT_CENTER
@@ -59,7 +61,7 @@ Feedback.prototype.CreateDialog = function(_args){
         top:10,
         left:10,
         right:10,
-        text:"We would love if you had the time\n to give us some feedback.\nThanks you in advance.",
+        text:_args.message,
         color:"#333",
         font:{fontSize:16},
         textAlign:Ti.UI.TEXT_ALIGNMENT_CENTER
@@ -81,7 +83,9 @@ Feedback.prototype.CreateDialog = function(_args){
         right:10,
         height:45,
         color:"#333",
-        font:{fontSize:18,fontWeight:"bold"},
+        font:{
+            fontSize:14,
+            fontWeight:"bold"},
     });
     
     var btn_2 = Ti.UI.createButton({
@@ -92,7 +96,7 @@ Feedback.prototype.CreateDialog = function(_args){
         right:10,
         height:45,
         color:"#333",
-        font:{fontSize:18,fontWeight:"bold"},
+        font:{fontSize:14,fontWeight:"bold"},
     });
     
     
@@ -104,7 +108,7 @@ Feedback.prototype.CreateDialog = function(_args){
         right:10,
         height:45,
         color:"#333",
-        font:{fontSize:18,fontWeight:"bold"},
+        font:{fontSize:14,fontWeight:"bold"},
     });
     
     FeedbackButtonHolder.add(btn_1);
@@ -123,9 +127,9 @@ Feedback.prototype.CreateDialog = function(_args){
         right:20,
         left:20,
         opacity:1,
-        duration:350});
+        duration:250});
     
-}, 2500);
+}, 5000);
 
 
 btn_3.addEventListener('click', function(e) {
